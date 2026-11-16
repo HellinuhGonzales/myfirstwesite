@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma. Helena Edelvice O. Gonzales | 12 HUMSS Portfolio</title>
+    <title>Grade 12 HUMSS Portfolio | Velvet & Verse</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Cinzel & Playfair Display (Moody Editorial Serif) + Plus Jakarta Sans -->
@@ -137,14 +137,14 @@
                     ✦
                 </span>
                 <div>
-                    <span class="font-display font-bold text-base sm:text-lg tracking-wider text-silverText block leading-none">Helena Gonzales</span>
+                    <span class="font-display font-bold text-base sm:text-lg tracking-wider text-silverText block leading-none">VELVET & VERSE</span>
                     <span class="text-[10px] uppercase tracking-[0.22em] text-lilac/80 font-medium">Grade 12 HUMSS Archive</span>
                 </div>
             </a>
 
             <nav class="hidden md:flex items-center gap-5 text-xs font-semibold uppercase tracking-wider text-mist">
                 <a href="#about-section" class="hover:text-lilac transition">About Me</a>
-                <a href="#works-section" class="hover:text-lilac transition">My Works </a>
+                <a href="#works-section" class="hover:text-lilac transition">Works (PDF)</a>
                 <a href="#moodboard-section" class="hover:text-lilac transition">Moodboard</a>
                 <a href="#guestbook-section" class="hover:text-lilac transition">Wall Notes</a>
             </nav>
@@ -194,6 +194,137 @@
                                 alt="Student Profile Picture" 
                                 class="w-full h-full object-cover rounded-full bg-nightCard"
                             >
+                        </div>
+                        <label for="profileUpload" class="mt-3 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-nightCard hover:bg-plum/70 text-lilac border border-violetGlow/40 text-xs font-semibold cursor-pointer shadow-md transition">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>Change Pic</span>
+                        </label>
+                        <input type="file" id="profileUpload" accept="image/*" class="hidden" onchange="previewSingleImage(event, 'profileImg')">
+                    </div>
+                </div>
+
+                <!-- Hero Bio & Quick Actions -->
+                <div class="text-center md:text-left flex-1 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-plum/60 border border-violetGlow/40 text-lilac text-xs font-bold tracking-widest uppercase">
+                        <i class="fa-solid fa-moon"></i>
+                        <span contenteditable="true" data-save-key="hero-badge">Grade 12 • HUMSS Strand</span>
+                    </div>
+
+                    <h1 contenteditable="true" data-save-key="hero-name" class="font-display text-3xl sm:text-5xl font-bold text-silverText tracking-wide leading-tight">
+                        Clarissa Mendoza
+                    </h1>
+
+                    <p contenteditable="true" data-save-key="hero-tagline" class="font-serif italic text-xl sm:text-2xl text-lilac">
+                        “Ink, midnight thoughts, and unapologetic stories of humanity.”
+                    </p>
+
+                    <p contenteditable="true" data-save-key="hero-bio" class="text-mist text-sm sm:text-base leading-relaxed max-w-2xl">
+                        Welcome to my digital sanctuary. As a Grade 12 Humanities and Social Sciences (HUMSS) student, I dissect society, write poetry in the dark, and turn lived experiences into literature. Tap through my milestones or read my original PDF works below.
+                    </p>
+
+                    <div class="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-3">
+                        <a href="#about-section" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-violetGlow to-royal text-white text-sm font-semibold shadow-md transition btn-glow">
+                            Explore My World ✦
+                        </a>
+                        <a href="#works-section" class="px-5 py-2.5 rounded-full bg-nightCard hover:bg-plum/50 text-lilac border border-violetGlow/40 text-sm font-semibold transition">
+                            Read My PDFs
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NEW FEATURE #1: DARK ACADEMIA / ALT WRITING VIBE MINI-PLAYER -->
+            <div class="relative z-10 mt-8 pt-6 border-t border-violetGlow/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3.5">
+                    <button id="playVibeBtn" onclick="toggleAmbientPlayer()" class="w-11 h-11 rounded-2xl bg-gradient-to-br from-violetGlow to-plum text-white flex items-center justify-center shadow-md border border-lilac/40 cursor-pointer btn-glow shrink-0">
+                        <i id="playVibeIcon" class="fa-solid fa-play ml-0.5"></i>
+                    </button>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-violetGlow">Writing Vibe Soundtrack</span>
+                            <div id="eqVisualizer" class="flex items-end gap-1 h-5">
+                                <span class="eq-bar"></span>
+                                <span class="eq-bar"></span>
+                                <span class="eq-bar"></span>
+                                <span class="eq-bar"></span>
+                            </div>
+                        </div>
+                        <p id="currentTrackTitle" contenteditable="true" data-save-key="vibe-track" class="text-sm font-semibold text-silverText">
+                            Midnight Velvet — Dark Academia Study Chords
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Switch Ambient Mood Track Buttons -->
+                <div class="flex items-center gap-2">
+                    <button onclick="selectVibeTrack(0)" class="vibe-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-plum/80 text-lilac border border-violetGlow/50 cursor-pointer transition">
+                        Velvet Rain
+                    </button>
+                    <button onclick="selectVibeTrack(1)" class="vibe-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-nightCard text-mist border border-violetGlow/25 hover:text-lilac cursor-pointer transition">
+                        Poet's Espresso
+                    </button>
+                    <button onclick="selectVibeTrack(2)" class="vibe-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-nightCard text-mist border border-violetGlow/25 hover:text-lilac cursor-pointer transition">
+                        Obsidian Night
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             2. INTERACTIVE "ABOUT ME" HUB (5 SEPARATE INTERACTIVE BUTTONS)
+             Achievements | Hobbies | Educational Background | My Dream | Fun Facts
+             ===================================================================== -->
+        <section id="about-section" class="space-y-6">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-bold uppercase tracking-[0.25em] text-violetGlow">Chapter I • Identity</span>
+                <h2 class="font-display text-2xl sm:text-4xl font-bold text-silverText">Milestones, Passions & Lore</h2>
+                <p class="text-sm text-mist">Tap any button below to unlock pictures and stories from my HUMSS journey.</p>
+            </div>
+
+            <!-- 5 Separate Interactive Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3" role="tablist">
+                <button onclick="switchAboutTab('achievements')" id="tab-achievements" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-gradient-to-r from-violetGlow to-royal text-white border border-lilac/50 shadow-md">
+                    <i class="fa-solid fa-crown"></i>
+                    <span>Achievements</span>
+                </button>
+
+                <button onclick="switchAboutTab('hobbies')" id="tab-hobbies" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
+                    <i class="fa-solid fa-book-skull text-lilac"></i>
+                    <span>Hobbies</span>
+                </button>
+
+                <button onclick="switchAboutTab('education')" id="tab-education" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
+                    <i class="fa-solid fa-graduation-cap text-lilac"></i>
+                    <span>Educational Background</span>
+                </button>
+
+                <button onclick="switchAboutTab('dream')" id="tab-dream" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
+                    <i class="fa-solid fa-sparkles text-lilac"></i>
+                    <span>My Dream</span>
+                </button>
+
+                <button onclick="switchAboutTab('funfacts')" id="tab-funfacts" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
+                    <i class="fa-solid fa-bolt text-lilac"></i>
+                    <span>Fun Facts About Me</span>
+                </button>
+            </div>
+
+            <!-- PANEL 1: ACHIEVEMENTS -->
+            <div id="panel-achievements" class="about-panel animate-fade-up alt-glass rounded-3xl p-6 sm:p-8">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-6 border-b border-violetGlow/20 pb-4">
+                    <div>
+                        <h3 class="font-display text-xl sm:text-2xl font-bold text-silverText">Academic & Literary Achievements</h3>
+                        <p class="text-xs sm:text-sm text-mist">Honors, press conferences, and proudest Senior High moments.</p>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-plum/70 text-lilac border border-violetGlow/40">HUMSS Honors</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Achievement 1 -->
+                    <article class="alt-subcard rounded-2xl overflow-hidden flex flex-col">
+                        <div class="relative h-48 bg-velvet">
+                            <img id="ach-img-1" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x400/191126/e0aaff?text=Achievement+1'" alt="Achievement 1" class="w-full h-full object-cover">
+                            <label class="absolute bottom-2.5 right-2.5 bg-obsidian/90 hover:bg-plum text-lilac border border-violetGlow/40 text-xs font-semibold px-3 py-1.5 rounded-full shadow cursor-pointer flex items-ce                          >
                         </div>
                         <label for="profileUpload" class="mt-3 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-nightCard hover:bg-plum/70 text-lilac border border-violetGlow/40 text-xs font-semibold cursor-pointer shadow-md transition">
                             <i class="fa-solid fa-camera"></i>
