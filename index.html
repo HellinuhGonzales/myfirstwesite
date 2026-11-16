@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Helena's Personal Website | Grade 12 HUMSS Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      /* Default: Alt Baddie Dark Purple Theme */
+      --bg-color: #09060e;
+      --bg-gradient: radial-gradient(circle at 15% 10%, rgba(124, 58, 237, 0.18), transparent 40%),
+                     radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.14), transparent 45%),
+                     radial-gradient(circle at 50% 90%, rgba(88, 28, 135, 0.2), transparent 50%);
+      --card-bg: #120c1c;
+      --card-elevated: #1a1128;
+      --text-color: #f3e8ff;
+      --subtext-color: #c4b5fd;
+      --muted-color: #9370db;
+      --primary-color: #c084fc;
+      --secondary-color: #9333ea;
+      --accent-color: #231538;
+      --border-color: rgba(168, 85, 247, 0.28);
+      --glow-shadow: 0 0 25px rgba(147, 51, 234, 0.22);
+      --btn-text: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      background-image: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-color);
+      line-height: 1.65;
+      min-height: 100vh;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      padding-bottom: 50px;
+    }
+
+    /* Top Sticky Navigation & Quick Controls */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(9, 6, 14, 0.78);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .brand-tag {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--primary-color);
+      text-transform: uppercase;
+    }
+
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mini-pill {
+      background: var(--accent-color);
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .mini-pill:hover, .mini-pill.active {
+      background: var(--secondary-color);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.45);
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 18px 0;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .badge-strand {
+      display: inline-block;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: var(--accent-color);
+      border: 1px solid var(--border-color);
+      color: var(--primary-color);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      color: var(--text-color);
+      font-size: clamp(1.85rem, 5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-shadow: 0 0 24px rgba(192, 132, 252, 0.35);
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--subtext-color);
+      font-size: 1.08rem;
+    }
+
+    /* Main Card */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 28px 24px;
+      border-radius: 22px;
+      margin-bottom: 26px;
+      box-shadow: var(--glow-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
+    }
+
+    .hero-card {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+
+    .profile-img {
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 0 28px rgba(168, 85, 247, 0.45);
+      transition: transform 0.35s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    .status-chip {
+      position: absolute;
+      bottom: 4px;
+      right: -6px;
+      background: var(--secondary-color);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 2px solid var(--card-bg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary-color);
+      font-size: 1.45rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+      margin: 18px 0;
+    }
+
+    .bio-text {
+      max-width: 650px;
+      margin: 0 auto 10px;
+      color: var(--text-color);
+      font-size: 0.98rem;
+    }
+
+    /* Ambient Dark Academia Audio Bar */
+    .vibe-player {
+      margin: 18px auto 6px;
+      max-width: 440px;
+      background: var(--card-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .vibe-info {
+      text-align: left;
+      font-size: 0.82rem;
+    }
+
+    .vibe-title {
+      font-weight: 700;
+      color: var(--primary-color);
+      display: block;
+    }
+
+    .vibe-sub {
+      color: var(--subtext-color);
+      font-size: 0.74rem;
+    }
+
+    .equalizer {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 14px;
+      margin-right: 6px;
+    }
+
+    .equalizer span {
+      width: 3px;
+      height: 5px;
+      background: var(--primary-color);
+      border-radius: 2px;
+      transition: height 0.2s ease;
+    }
+
+    .equalizer.playing span:nth-child(1) { animation: eq 0.7s infinite alternate; }
+    .equalizer.playing span:nth-child(2) { animation: eq 0.5s infinite alternate 0.2s; }
+    .equalizer.playing span:nth-child(3) { animation: eq 0.8s infinite alternate 0.1s; }
+    .equalizer.playing span:nth-child(4) { animation: eq 0.6s infinite alternate 0.3s; }
+
+    @keyframes eq {
+      from { height: 4px; }
+      to { height: 15px; }
+    }
+
+    /* Original Hero Interactive Buttons */
+    .button-group {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, var(--secondary-color), #6b21a8);
+      color: var(--btn-text);
+      border: 1px solid rgba(216, 180, 254, 0.3);
+      padding: 11px 18px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(147, 51, 234, 0.45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary-color);
+      border: 1.5px solid var(--primary-color);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent-color);
+      color: var(--text-color);
+    }
+
+    /* Theme Dot Selector from Original Code */
+    .theme-selector {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .theme-label {
+      font-size: 0.82rem;
+      color: var(--subtext-color);
+      font-weight: 600;
+    }
+
+    .theme-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #fff;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease;
+    }
+
+    .theme-dot:hover { transform: scale(1.2); }
+    .dot-purple { background-color: #3b0764; }
+    .dot-dark { background-color: #111827; }
+    .dot-light { background-color: #eaf2ff; }
+
+    /* Dynamic Message Box from Original Code */
+    #message-box {
+      margin: 18px auto 0;
+      max-width: 540px;
+      padding: 15px 18px;
+      background-color: var(--accent-color);
+      border-radius: 14px;
+      display: none;
+      color: var(--text-color);
+      font-weight: 500;
+      font-size: 0.92rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Interactive Category Tabs (5 About Buttons & 4 Literary Works Buttons) */
+    .tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin: 16px 0 22px;
+    }
+
+    .tab-btn {
+      background: var(--card-elevated);
+      color: var(--subtext-color);
+      border: 1px solid var(--border-color);
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--primary-color);
+      color: var(--text-color);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--secondary-color), #581c87);
+      color: #ffffff;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 18px rgba(168, 85, 247, 0.45);
+    }
+
+    /* Photo + Word Grid for About Me Sections */
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .info-card {
+      background: var(--card-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--primary-color);
+    }
+
+    .info-img-wrap {
+      position: relative;
+      height: 175px;
+      background: #1f1430;
+      overflow: hidden;
+    }
+
+    .info-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .info-card:hover .info-img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .change-pic-btn {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(9, 6, 14, 0.82);
+      color: #f3e8ff;
+      border: 1px solid var(--primary-color);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .info-body {
+      padding: 15px;
+      text-align: left;
+      flex: 1;
+    }
+
+    .info-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--primary-color);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .info-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.12rem;
+      color: var(--text-color);
+      margin-bottom: 6px;
+    }
+
+    .info-body p {
+      font-size: 0.88rem;
+      color: var(--subtext-color);
+    }
+
+    /* Literary Works PDF Desk */
+    .pdf-panel {
+      background: var(--card-elevated);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 20px;
+      text-align: left;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .pdf-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .pdf-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      color: var(--text-color);
+    }
+
+    .pdf-meta {
+      font-size: 0.84rem;
+      color: var(--subtext-color);
+    }
+
+    .pdf-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .pdf-viewer-box {
+      width: 100%;
+      min-height: 360px;
+      border-radius: 14px;
+      border: 1.5px dashed var(--border-color);
+      background: rgba(9, 6, 14, 0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+
+    .pdf-viewer-box iframe {
+      width: 100%;
+      height: 460px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* Dark Purple Aesthetic Moodboard */
+    .moodboard-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    @media (min-width: 640px) {
+      .moodboard-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .mood-tile {
+      position: relative;
+      height: 155px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .mood-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.82) contrast(1.08);
+      transition: transform 0.35s ease;
+    }
+
+    .mood-tile:hover img {
+      transform: scale(1.06);
+    }
+
+    .mood-caption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 8px 10px;
+      background: linear-gradient(transparent, rgba(9, 6, 14, 0.92));
+      color: #f3e8ff;
+      font-size: 0.78rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+
+    /* Guestbook Wall */
+    .guestbook-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .guest-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .input-field {
+      flex: 1;
+      min-width: 180px;
+      background: var(--card-elevated);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.88rem;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+
+    .notes-list {
+      display: grid;
+      gap: 10px;
+      text-align: left;
+    }
+
+    .note-item {
+      background: var(--card-elevated);
+      border-left: 3px solid var(--primary-color);
+      padding: 11px 14px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+    }
+
+    .note-author {
+      font-weight: 700;
+      color: var(--primary-color);
+      font-size: 0.82rem;
+      margin-bottom: 2px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--subtext-color);
+      margin-top: 24px;
+      padding: 0 16px;
+    }
+
+    .quote-footer {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--primary-color);
+      margin-bottom: 6px;
+    }
+
+    /* Modal for GitHub Setup Guide */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 3, 10, 0.82);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 200;
+    }
+
+    .modal-box {
+      background: var(--card-bg);
+      border: 1px solid var(--primary-color);
+      border-radius: 18px;
+      max-width: 500px;
+      width: 100%;
+      padding: 22px;
+      text-align: left;
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+    }
+
+    .modal-box h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .modal-box ol {
+      padding-left: 20px;
+      font-size: 0.88rem;
+      color: var(--text-color);
+      display: grid;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .editable-highlight {
+      outline: 1.5px dashed var(--primary-color);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Bar -->
+  <nav class="top-bar">
+    <div class="brand-tag">✦ Helena Gonzales • HUMSS XII</div>
+    <div class="top-controls">
+      <button class="mini-pill" id="edit-toggle" onclick="toggleEditMode()">✎ Customize Text</button>
+      <button class="mini-pill" onclick="toggleModal(true)">⚙ GitHub PDF Guide</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="badge-strand">SHS Grade 12 Student|HUMSS</div>
+      <h1 class="editable">Welcome to My Portfolio!</h1>
+      <p class="subtitle editable">Visual Artist • Campus Journalist • Creative Writer • Stage Host</p>
+    </header>
+
+    <!-- Main Hero Card (Preserving Original Content & Buttons) -->
+    <section class="card hero-card">
+      <div class="profile-wrapper">
+        <img
+          id="hero-profile-img"
+          src="IMG_20261112_001728.jpg"
+          onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'"
+          alt="Helena Profile Picture"
+          class="profile-img"
+        />
+        <span class="status-chip">HUMSS '26</span>
+      </div>
+
+      <div style="margin-bottom: 12px;">
+        <button class="mini-pill" onclick="triggerPhotoUpload('hero')">📷 Change Profile Pic</button>
+      </div>
+
+      <h2 class="section-title editable">Greetings Lovelies! ✨</h2>
+      <p class="bio-text editable">
+        Hello! I am <strong>Maria Helena Edelvice O. Gonzales</strong>, a Grade 12 SHS student here at <strong>Datamex College of Saint Adeline•Parañaque</strong>.
+      </p>
+      <p class="bio-text editable">
+        A former Special Program of the Arts (SPA) Visual Arts major, campus journalist, and creative writer turning thoughts, canvases, and stage moments into stories.
+      </p>
+
+      <!-- Dark Academia Ambient Audio Player -->
+      <div class="vibe-player">
+        <div class="vibe-info">
+          <span class="vibe-title">
+            <span class="equalizer" id="eq-bars"><span></span><span></span><span></span><span></span></span>
+            Velvet Midnight Synth
+          </span>
+          <span class="vibe-sub">Ambient dark-purple reading vibe</span>
+        </div>
+        <button class="mini-pill" id="audio-btn" onclick="toggleAmbientAudio()">▶ Play Vibe</button>
+      </div>
+
+      <!-- Original Interactive Buttons -->
+      <div class="button-group">
+        <button class="btn" onclick="showMessage('contact')">💌 Get in Touch!</button>
+        <button class="btn btn-outline" onclick="showMessage('Talents')">⚡ View My Skills</button>
+        <button class="btn btn-outline" onclick="cycleTheme()">🎨 Switch Color Theme</button>
+      </div>
+
+      <!-- Original Color Dot Selectors -->
+      <div class="theme-selector">
+        <span class="theme-label">Theme:</span>
+        <div class="theme-dot dot-purple" title="Alt Dark Purple Theme" onclick="setTheme('purple')"></div>
+        <div class="theme-dot dot-dark" title="Midnight Blu
