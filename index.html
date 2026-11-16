@@ -3,839 +3,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grade 12 HUMSS Portfolio | Velvet & Verse</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Cinzel & Playfair Display (Moody Editorial Serif) + Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        display: ['"Cinzel"', 'Georgia', 'serif'],
-                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                    },
-                    colors: {
-                        obsidian: '#09060e',
-                        velvet: '#120c1c',
-                        nightCard: '#191126',
-                        plum: '#3c096c',
-                        royal: '#5a189a',
-                        violetGlow: '#9d4edd',
-                        lilac: '#e0aaff',
-                        mist: '#c8b6d9',
-                        silverText: '#f3ebfa'
-                    }
-                }
-            }
-        }
-    </script>
+    <title>DIGITAL ARCHIVE // 001</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <style>
-        html {
-            scroll-behavior: smooth;
+        :root {
+            --bg-void: #070709;
+            --bg-card: #111116;
+            --text-silver: #e4e4ec;
+            --text-muted: #7a7a8c;
+            --accent-crimson: #ff1e42;
+            --accent-chrome: linear-gradient(135deg, #ffffff 0%, #8a8a9e 50%, #ffffff 100%);
+            --border-glaze: rgba(255, 255, 255, 0.14);
         }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background-color: #09060e;
-            color: #f3ebfa;
+            background-color: var(--bg-void);
+            color: var(--text-silver);
+            font-family: 'Space Mono', monospace;
+            overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 15% 15%, rgba(90, 24, 154, 0.22) 0%, transparent 40%),
-                radial-gradient(circle at 85% 30%, rgba(157, 78, 221, 0.16) 0%, transparent 45%),
-                radial-gradient(circle at 50% 85%, rgba(60, 9, 108, 0.25) 0%, transparent 50%),
-                radial-gradient(rgba(224, 170, 255, 0.12) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px;
+                radial-gradient(circle at 50% 0%, rgba(255, 30, 66, 0.15), transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 40px 40px, 40px 40px;
         }
 
-        /* Glassmorphic Dark Purple Cards */
-        .alt-glass {
-            background: rgba(18, 12, 28, 0.78);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(157, 78, 221, 0.28);
-            box-shadow: 0 10px 35px -10px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(224, 170, 255, 0.12);
+        /* Subtle CRT / Film Grain Overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.12),
+                rgba(0, 0, 0, 0.12) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 999;
         }
 
-        .alt-subcard {
-            background: rgba(25, 17, 38, 0.85);
-            border: 1px solid rgba(157, 78, 221, 0.22);
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-        }
-        .alt-subcard:hover {
-            border-color: rgba(224, 170, 255, 0.55);
-            box-shadow: 0 0 22px rgba(157, 78, 221, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Glowing Aura Effects */
-        .violet-aura {
-            box-shadow: 0 0 28px rgba(157, 78, 221, 0.45), 0 0 60px rgba(90, 24, 154, 0.35);
-        }
-        .btn-glow:hover {
-            box-shadow: 0 0 20px rgba(157, 78, 221, 0.55);
+        /* Top Scrolling Y2K Ticker */
+        .marquee-bar {
+            background: var(--accent-crimson);
+            color: #000;
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            padding: 6px 0;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            border-bottom: 1px solid #fff;
         }
 
-        /* Edit Mode Visual Highlights */
-        .edit-mode-active [contenteditable="true"] {
-            outline: 1.5px dashed #e0aaff;
-            background-color: rgba(90, 24, 154, 0.35);
-            border-radius: 0.5rem;
-            padding: 2px 6px;
-            transition: all 0.2s ease;
-        }
-        .edit-mode-active [contenteditable="true"]:focus {
-            outline: 2px solid #9d4edd;
-            background-color: rgba(60, 9, 108, 0.65);
+        .marquee-content {
+            display: inline-block;
+            animation: scrollText 18s linear infinite;
         }
 
-        /* Tab Transition */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .animate-fade-up {
-            animation: fadeUp 0.35s ease-out forwards;
+        @keyframes scrollText {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
         }
 
-        /* Equalizer Animation for Writing Vibe Player */
-        @keyframes eqBounce {
-            0%, 100% { height: 6px; }
-            50% { height: 22px; }
+        /* Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            border-bottom: 1px solid var(--border-glaze);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .eq-bar {
-            width: 3px;
-            border-radius: 999px;
-            background: linear-gradient(to top, #9d4edd, #e0aaff);
-            height: 6px;
+
+        .logo {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            background: var(--accent-chrome);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
         }
-        .playing .eq-bar:nth-child(1) { animation: eqBounce 0.7s infinite ease-in-out; }
-        .playing .eq-bar:nth-child(2) { animation: eqBounce 0.5s infinite ease-in-out 0.15s; }
-        .playing .eq-bar:nth-child(3) { animation: eqBounce 0.8s infinite ease-in-out 0.3s; }
-        .playing .eq-bar:nth-child(4) { animation: eqBounce 0.6s infinite ease-in-out 0.1s; }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--text-silver);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            transition: color 0.25s;
+        }
+
+        nav a:hover {
+            color: var(--accent-crimson);
+        }
+
+        nav a::before {
+            content: "[";
+            opacity: 0;
+            margin-right: 4px;
+            color: var(--accent-crimson);
+            transition: opacity 0.2s;
+        }
+
+        nav a::after {
+            content: "]";
+            opacity: 0;
+            margin-left: 4px;
+            color: var(--accent-crimson);
+            transition: opacity 0.2s;
+        }
+
+        nav a:hover::before, nav a:hover::after {
+            opacity: 1;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 7rem 2rem 5rem;
+            position: relative;
+        }
+
+        .status-pill {
+            display: inline-block;
+            border: 1px solid var(--accent-crimson);
+            color: var(--accent-crimson);
+            padding: 4px 14px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 15px rgba(255, 30, 66, 0.3);
+        }
+
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            margin-bottom: 1.5rem;
+            background: var(--accent-chrome);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero h1 span {
+            font-family: 'Cinzel Decorative', cursive;
+            font-weight: 700;
+            -webkit-text-fill-color: var(--accent-crimson);
+            text-shadow: 0 0 25px rgba(255, 30, 66, 0.6);
+        }
+
+        .hero p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 540px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
+
+        /* Interactive Mini Audio Player Widget */
+        .cyber-player {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(20, 20, 26, 0.85);
+            border: 1px solid var(--border-glaze);
+            padding: 10px 20px;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        }
+
+        .play-btn {
+            background: var(--accent-crimson);
+            color: #fff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            font-family: 'Space Mono', monospace;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 15px var(--accent-crimson);
+        }
+
+        .track-info {
+            text-align: left;
+            font-size: 0.75rem;
+        }
+
+        .track-title {
+            color: #fff;
+            font-weight: 700;
+            display: block;
+        }
+
+        .track-artist {
+            color: var(--text-muted);
+        }
+
+        /* Gallery Grid */
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 3rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid var(--border-glaze);
+            padding-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Syne', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-glaze);
+            position: relative;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+
+        .gallery-card:hover {
+            border-color: var(--accent-crimson);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 35px rgba(255, 30, 66, 0.18);
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(7, 7, 9, 0.85);
+            border: 1px solid var(--border-glaze);
+            color: var(--text-silver);
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            z-index: 2;
+        }
+
+        .card-image {
+            height: 280px;
+            background-size: cover;
+            background-position: center;
+            filter: contrast(1.15) saturate(0.85);
+            transition: filter 0.3s, transform 0.5s;
+        }
+
+        .gallery-card:hover .card-image {
+            filter: contrast(1.2) saturate(1.1);
+            transform: scale(1.03);
+        }
+
+        .card-info {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-glaze);
+        }
+
+        .card-info h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+            color: #fff;
+        }
+
+        .card-info p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-glaze);
+            margin-top: 4rem;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1.2rem 1.5rem; flex-direction: column; gap: 1rem; }
+            nav a { margin: 0 0.75rem; font-size: 0.75rem; }
+            .gallery-grid { padding: 2rem 1.5rem; }
+        }
     </style>
-</head>
-<body class="font-sans antialiased selection:bg-violetGlow selection:text-obsidian">
-
-    <!-- =====================================================================
-         STICKY GLASSMORPHIC TOP NAVBAR
-         ===================================================================== -->
-    <header class="sticky top-0 z-40 bg-obsidian/85 backdrop-blur-lg border-b border-violetGlow/25">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-2">
-            <a href="#" class="flex items-center gap-3 group">
-                <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-violetGlow to-plum text-white flex items-center justify-center font-display text-lg font-bold shadow-md group-hover:scale-105 transition border border-lilac/40">
-                    ✦
-                </span>
-                <div>
-                    <span class="font-display font-bold text-base sm:text-lg tracking-wider text-silverText block leading-none">VELVET & VERSE</span>
-                    <span class="text-[10px] uppercase tracking-[0.22em] text-lilac/80 font-medium">Grade 12 HUMSS Archive</span>
-                </div>
-            </a>
-
-            <nav class="hidden md:flex items-center gap-5 text-xs font-semibold uppercase tracking-wider text-mist">
-                <a href="#about-section" class="hover:text-lilac transition">About Me</a>
-                <a href="#works-section" class="hover:text-lilac transition">Works (PDF)</a>
-                <a href="#moodboard-section" class="hover:text-lilac transition">Moodboard</a>
-                <a href="#guestbook-section" class="hover:text-lilac transition">Wall Notes</a>
-            </nav>
-
-            <div class="flex items-center gap-2">
-                <!-- GitHub Setup Helper Trigger -->
-                <button onclick="openGithubModal()" title="GitHub Pages Setup Guide" class="w-9 h-9 rounded-full bg-nightCard hover:bg-plum/60 text-lilac border border-violetGlow/35 flex items-center justify-center text-xs transition cursor-pointer">
-                    <i class="fa-brands fa-github text-sm"></i>
-                </button>
-
-                <!-- Edit Mode Toggle Button -->
-                <button id="toggleEditBtn" onclick="toggleEditMode()" class="flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-royal to-plum hover:from-violetGlow hover:to-royal text-white border border-lilac/40 shadow-sm transition cursor-pointer btn-glow">
-                    <i class="fa-solid fa-wand-magic-sparkles text-lilac"></i>
-                    <span id="editBtnLabel">Edit Mode</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Edit Mode Banner -->
-    <div id="editBanner" class="hidden bg-gradient-to-r from-plum via-royal to-plum text-white text-xs sm:text-sm py-2.5 px-4 text-center border-b border-lilac/30 shadow-lg">
-        <div class="max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-2">
-            <span><i class="fa-solid fa-sparkles text-lilac mr-1"></i> <strong>Alt Edit Mode Active:</strong> Tap any glowing text box to rewrite your story, or tap <strong>Change Pic</strong> to upload photos!</span>
-            <button onclick="saveChangesToBrowser()" class="underline font-bold ml-2 text-lilac hover:text-white cursor-pointer">Save Draft</button>
-        </div>
-    </div>
-
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-16">
-
-        <!-- =====================================================================
-             1. HERO SECTION + AMBIENT DARK-ACADEMIA WRITING SOUNDTRACK WIDGET
-             ===================================================================== -->
-        <section class="alt-glass rounded-3xl p-6 sm:p-10 relative overflow-hidden">
-            <!-- Ambient Purple Orbs -->
-            <div class="absolute -top-16 -right-16 w-52 h-52 rounded-full bg-violetGlow/20 blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-16 -left-16 w-52 h-52 rounded-full bg-royal/25 blur-3xl pointer-events-none"></div>
-
-            <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
-                <!-- Profile Photo with Dark Purple Aura -->
-                <div class="flex flex-col items-center shrink-0">
-                    <div class="relative">
-                        <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-full p-1.5 bg-gradient-to-tr from-plum via-violetGlow to-lilac violet-aura">
-                            <img 
-                                id="profileImg" 
-                                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" 
-                                onerror="this.src='https://placehold.co/400x400/191126/e0aaff?text=Your+Photo'"
-                                alt="Student Profile Picture" 
-                                class="w-full h-full object-cover rounded-full bg-nightCard"
-                            >
-                        </div>
-                        <label for="profileUpload" class="mt-3 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-nightCard hover:bg-plum/70 text-lilac border border-violetGlow/40 text-xs font-semibold cursor-pointer shadow-md transition">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>Change Pic</span>
-                        </label>
-                        <input type="file" id="profileUpload" accept="image/*" class="hidden" onchange="previewSingleImage(event, 'profileImg')">
-                    </div>
-                </div>
-
-                <!-- Hero Bio & Quick Actions -->
-                <div class="text-center md:text-left flex-1 space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-plum/60 border border-violetGlow/40 text-lilac text-xs font-bold tracking-widest uppercase">
-                        <i class="fa-solid fa-moon"></i>
-                        <span contenteditable="true" data-save-key="hero-badge">Grade 12 • HUMSS Strand</span>
-                    </div>
-
-                    <h1 contenteditable="true" data-save-key="hero-name" class="font-display text-3xl sm:text-5xl font-bold text-silverText tracking-wide leading-tight">
-                        Clarissa Mendoza
-                    </h1>
-
-                    <p contenteditable="true" data-save-key="hero-tagline" class="font-serif italic text-xl sm:text-2xl text-lilac">
-                        “Ink, midnight thoughts, and unapologetic stories of humanity.”
-                    </p>
-
-                    <p contenteditable="true" data-save-key="hero-bio" class="text-mist text-sm sm:text-base leading-relaxed max-w-2xl">
-                        Welcome to my digital sanctuary. As a Grade 12 Humanities and Social Sciences (HUMSS) student, I dissect society, write poetry in the dark, and turn lived experiences into literature. Tap through my milestones or read my original PDF works below.
-                    </p>
-
-                    <div class="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-3">
-                        <a href="#about-section" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-violetGlow to-royal text-white text-sm font-semibold shadow-md transition btn-glow">
-                            Explore My World ✦
-                        </a>
-                        <a href="#works-section" class="px-5 py-2.5 rounded-full bg-nightCard hover:bg-plum/50 text-lilac border border-violetGlow/40 text-sm font-semibold transition">
-                            Read My PDFs
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NEW FEATURE #1: DARK ACADEMIA / ALT WRITING VIBE MINI-PLAYER -->
-            <div class="relative z-10 mt-8 pt-6 border-t border-violetGlow/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-3.5">
-                    <button id="playVibeBtn" onclick="toggleAmbientPlayer()" class="w-11 h-11 rounded-2xl bg-gradient-to-br from-violetGlow to-plum text-white flex items-center justify-center shadow-md border border-lilac/40 cursor-pointer btn-glow shrink-0">
-                        <i id="playVibeIcon" class="fa-solid fa-play ml-0.5"></i>
-                    </button>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-violetGlow">Writing Vibe Soundtrack</span>
-                            <div id="eqVisualizer" class="flex items-end gap-1 h-5">
-                                <span class="eq-bar"></span>
-                                <span class="eq-bar"></span>
-                                <span class="eq-bar"></span>
-                                <span class="eq-bar"></span>
-                            </div>
-                        </div>
-                        <p id="currentTrackTitle" contenteditable="true" data-save-key="vibe-track" class="text-sm font-semibold text-silverText">
-                            Midnight Velvet — Dark Academia Study Chords
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Switch Ambient Mood Track Buttons -->
-                <div class="flex items-center gap-2">
-                    <button onclick="selectVibeTrack(0)" class="vibe-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-plum/80 text-lilac border border-violetGlow/50 cursor-pointer transition">
-                        Velvet Rain
-                    </button>
-                    <button onclick="selectVibeTrack(1)" class="vibe-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-nightCard text-mist border border-violetGlow/25 hover:text-lilac cursor-pointer transition">
-                        Poet's Espresso
-                    </button>
-                    <button onclick="selectVibeTrack(2)" class="vibe-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-nightCard text-mist border border-violetGlow/25 hover:text-lilac cursor-pointer transition">
-                        Obsidian Night
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- =====================================================================
-             2. INTERACTIVE "ABOUT ME" HUB (5 SEPARATE INTERACTIVE BUTTONS)
-             Achievements | Hobbies | Educational Background | My Dream | Fun Facts
-             ===================================================================== -->
-        <section id="about-section" class="space-y-6">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <span class="text-xs font-bold uppercase tracking-[0.25em] text-violetGlow">Chapter I • Identity</span>
-                <h2 class="font-display text-2xl sm:text-4xl font-bold text-silverText">Milestones, Passions & Lore</h2>
-                <p class="text-sm text-mist">Tap any button below to unlock pictures and stories from my HUMSS journey.</p>
-            </div>
-
-            <!-- 5 Separate Interactive Buttons -->
-            <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3" role="tablist">
-                <button onclick="switchAboutTab('achievements')" id="tab-achievements" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-gradient-to-r from-violetGlow to-royal text-white border border-lilac/50 shadow-md">
-                    <i class="fa-solid fa-crown"></i>
-                    <span>Achievements</span>
-                </button>
-
-                <button onclick="switchAboutTab('hobbies')" id="tab-hobbies" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
-                    <i class="fa-solid fa-book-skull text-lilac"></i>
-                    <span>Hobbies</span>
-                </button>
-
-                <button onclick="switchAboutTab('education')" id="tab-education" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
-                    <i class="fa-solid fa-graduation-cap text-lilac"></i>
-                    <span>Educational Background</span>
-                </button>
-
-                <button onclick="switchAboutTab('dream')" id="tab-dream" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
-                    <i class="fa-solid fa-sparkles text-lilac"></i>
-                    <span>My Dream</span>
-                </button>
-
-                <button onclick="switchAboutTab('funfacts')" id="tab-funfacts" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
-                    <i class="fa-solid fa-bolt text-lilac"></i>
-                    <span>Fun Facts About Me</span>
-                </button>
-            </div>
-
-            <!-- PANEL 1: ACHIEVEMENTS -->
-            <div id="panel-achievements" class="about-panel animate-fade-up alt-glass rounded-3xl p-6 sm:p-8">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-6 border-b border-violetGlow/20 pb-4">
-                    <div>
-                        <h3 class="font-display text-xl sm:text-2xl font-bold text-silverText">Academic & Literary Achievements</h3>
-                        <p class="text-xs sm:text-sm text-mist">Honors, press conferences, and proudest Senior High moments.</p>
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-plum/70 text-lilac border border-violetGlow/40">HUMSS Honors</span>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Achievement 1 -->
-                    <article class="alt-subcard rounded-2xl overflow-hidden flex flex-col">
-                        <div class="relative h-48 bg-velvet">
-                            <img id="ach-img-1" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x400/191126/e0aaff?text=Achievement+1'" alt="Achievement 1" class="w-full h-full object-cover">
-                            <label class="absolute bottom-2.5 right-2.5 bg-obsidian/90 hover:bg-plum text-lilac border border-violetGlow/40 text-xs font-semibold px-3 py-1.5 rounded-full shadow cursor-pointer flex items-ce                          >
-                        </div>
-                        <label for="profileUpload" class="mt-3 inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-nightCard hover:bg-plum/70 text-lilac border border-violetGlow/40 text-xs font-semibold cursor-pointer shadow-md transition">
-                            <i class="fa-solid fa-camera"></i>
-                            <span>Change Pic</span>
-                        </label>
-                        <input type="file" id="profileUpload" accept="image/*" class="hidden" onchange="previewSingleImage(event, 'profileImg')">
-                    </div>
-                </div>
-
-                <!-- Hero Bio & Quick Actions -->
-                <div class="text-center md:text-left flex-1 space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-plum/60 border border-violetGlow/40 text-lilac text-xs font-bold tracking-widest uppercase">
-                        <i class="fa-solid fa-moon"></i>
-                        <span contenteditable="true" data-save-key="hero-badge">Grade 12 • HUMSS Strand</span>
-                    </div>
-
-                    <h1 contenteditable="true" data-save-key="hero-name" class="font-display text-3xl sm:text-5xl font-bold text-silverText tracking-wide leading-tight">
-                        Maria Helena Edelvice O. Gonzaes
-                    </h1>
-
-                    <p contenteditable="true" data-save-key="hero-tagline" class="font-serif italic text-xl sm:text-2xl text-lilac">
-                        “A glimpse of my story”
-                    </p>
-
-                    <p contenteditable="true" data-save-key="hero-bio" class="text-mist text-sm sm:text-base leading-relaxed max-w-2xl">
-                        Welcome to my digital sanctuary. As a Grade 12 Humanities and Social Sciences (HUMSS) student, I dissect society, write poetry in the dark, and turn lived experiences into literature. Tap through my milestones or read my original PDF works below.
-                    </p>
-
-                    <div class="pt-1 flex flex-wrap items-center justify-center md:justify-start gap-3">
-                        <a href="#about-section" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-violetGlow to-royal text-white text-sm font-semibold shadow-md transition btn-glow">
-                            Explore My World ✦
-                        </a>
-                        <a href="#works-section" class="px-5 py-2.5 rounded-full bg-nightCard hover:bg-plum/50 text-lilac border border-violetGlow/40 text-sm font-semibold transition">
-                            Read My Works
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NEW FEATURE #1: DARK ACADEMIA / ALT WRITING VIBE MINI-PLAYER -->
-            <div class="relative z-10 mt-8 pt-6 border-t border-violetGlow/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div class="flex items-center gap-3.5">
-                    <button id="playVibeBtn" onclick="toggleAmbientPlayer()" class="w-11 h-11 rounded-2xl bg-gradient-to-br from-violetGlow to-plum text-white flex items-center justify-center shadow-md border border-lilac/40 cursor-pointer btn-glow shrink-0">
-                        <i id="playVibeIcon" class="fa-solid fa-play ml-0.5"></i>
-                    </button>
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-[10px] font-bold uppercase tracking-widest text-violetGlow">Writing Vibe Soundtrack</span>
-                            <div id="eqVisualizer" class="flex items-end gap-1 h-5">
-                                <span class="eq-bar"></span>
-                                <span class="eq-bar"></span>
-                                <span class="eq-bar"></span>
-                                <span class="eq-bar"></span>
-                            </div>
-                        </div>
-                        <p id="currentTrackTitle" contenteditable="true" data-save-key="vibe-track" class="text-sm font-semibold text-silverText">
-                            Midnight Velvet — Dark Academia Study Chords
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Switch Ambient Mood Track Buttons -->
-                <div class="flex items-center gap-2">
-                    <button onclick="selectVibeTrack(0)" class="vibe-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-plum/80 text-lilac border border-violetGlow/50 cursor-pointer transition">
-                        Velvet Rain
-                    </button>
-                    <button onclick="selectVibeTrack(1)" class="vibe-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-nightCard text-mist border border-violetGlow/25 hover:text-lilac cursor-pointer transition">
-                        Poet's Espresso
-                    </button>
-                    <button onclick="selectVibeTrack(2)" class="vibe-pill px-3 py-1.5 rounded-xl text-xs font-semibold bg-nightCard text-mist border border-violetGlow/25 hover:text-lilac cursor-pointer transition">
-                        Obsidian Night
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- =====================================================================
-             2. INTERACTIVE "ABOUT ME" HUB (5 SEPARATE INTERACTIVE BUTTONS)
-             Achievements | Hobbies | Educational Background | My Dream | Fun Facts
-             ===================================================================== -->
-        <section id="about-section" class="space-y-6">
-            <div class="text-center max-w-2xl mx-auto space-y-2">
-                <span class="text-xs font-bold uppercase tracking-[0.25em] text-violetGlow">Chapter I • Identity</span>
-                <h2 class="font-display text-2xl sm:text-4xl font-bold text-silverText">Milestones, Passions & Lore</h2>
-                <p class="text-sm text-mist">Tap any button below to unlock pictures and stories from my HUMSS journey.</p>
-            </div>
-
-            <!-- 5 Separate Interactive Buttons -->
-            <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3" role="tablist">
-                <button onclick="switchAboutTab('achievements')" id="tab-achievements" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-gradient-to-r from-violetGlow to-royal text-white border border-lilac/50 shadow-md">
-                    <i class="fa-solid fa-crown"></i>
-                    <span>Achievements</span>
-                </button>
-
-                <button onclick="switchAboutTab('hobbies')" id="tab-hobbies" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
-                    <i class="fa-solid fa-book-skull text-lilac"></i>
-                    <span>Hobbies</span>
-                </button>
-
-                <button onclick="switchAboutTab('education')" id="tab-education" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
-                    <i class="fa-solid fa-graduation-cap text-lilac"></i>
-                    <span>Educational Background</span>
-                </button>
-
-                <button onclick="switchAboutTab('dream')" id="tab-dream" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
-                    <i class="fa-solid fa-sparkles text-lilac"></i>
-                    <span>My Dream</span>
-                </button>
-
-                <button onclick="switchAboutTab('funfacts')" id="tab-funfacts" class="about-tab-btn flex items-center gap-2 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold transition cursor-pointer bg-nightCard hover:bg-plum/40 text-mist border border-violetGlow/25">
-                    <i class="fa-solid fa-bolt text-lilac"></i>
-                    <span>Fun Facts About Me</span>
-                </button>
-            </div>
-
-            <!-- PANEL 1: ACHIEVEMENTS -->
-            <div id="panel-achievements" class="about-panel animate-fade-up alt-glass rounded-3xl p-6 sm:p-8">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-6 border-b border-violetGlow/20 pb-4">
-                    <div>
-                        <h3 class="font-display text-xl sm:text-2xl font-bold text-silverText">Academic & Literary Achievements</h3>
-                        <p class="text-xs sm:text-sm text-mist">Honors, press conferences, and proudest Senior High moments.</p>
-                    </div>
-                    <span class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-plum/70 text-lilac border border-violetGlow/40">HUMSS Honors</span>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Achievement 1 -->
-                    <article class="alt-subcard rounded-2xl overflow-hidden flex flex-col">
-                        <div class="relative h-48 bg-velvet">
-                            <img id="ach-img-1" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=600&q=80" onerror="this.src='https://placehold.co/600x400/191126/e0aaff?text=Achievement+1'" alt="Achievement 1" class="w-full h-full object-cover">
-                            <label class="absolute bottom-2.5 right-2.5 bg-obsidian/90 hover:bg-plum text-lilac border border-violetGlow/40 text-xs font-semibold px-3 py-1.5 rounded-full shadow cursor-pointer flex items-ce gap: 6px;
-    }
-
-    .tab-btn:hover {
-      border-color: var(--primary-color);
-      color: var(--text-color);
-    }
-
-    .tab-btn.active {
-      background: linear-gradient(135deg, var(--secondary-color), #581c87);
-      color: #ffffff;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 18px rgba(168, 85, 247, 0.45);
-    }
-
-    /* Photo + Word Grid for About Me Sections */
-    .showcase-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      animation: fadeIn 0.35s ease;
-    }
-
-    .info-card {
-      background: var(--card-elevated);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .info-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--primary-color);
-    }
-
-    .info-img-wrap {
-      position: relative;
-      height: 175px;
-      background: #1f1430;
-      overflow: hidden;
-    }
-
-    .info-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-
-    .info-card:hover .info-img-wrap img {
-      transform: scale(1.05);
-    }
-
-    .change-pic-btn {
-      position: absolute;
-      bottom: 8px;
-      right: 8px;
-      background: rgba(9, 6, 14, 0.82);
-      color: #f3e8ff;
-      border: 1px solid var(--primary-color);
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 0.72rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .info-body {
-      padding: 15px;
-      text-align: left;
-      flex: 1;
-    }
-
-    .info-tag {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--primary-color);
-      margin-bottom: 4px;
-      display: block;
-    }
-
-    .info-body h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.12rem;
-      color: var(--text-color);
-      margin-bottom: 6px;
-    }
-
-    .info-body p {
-      font-size: 0.88rem;
-      color: var(--subtext-color);
-    }
-
-    /* Literary Works PDF Desk */
-    .pdf-panel {
-      background: var(--card-elevated);
-      border: 1px solid var(--border-color);
-      border-radius: 18px;
-      padding: 20px;
-      text-align: left;
-      animation: fadeIn 0.35s ease;
-    }
-
-    .pdf-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .pdf-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      color: var(--text-color);
-    }
-
-    .pdf-meta {
-      font-size: 0.84rem;
-      color: var(--subtext-color);
-    }
-
-    .pdf-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .pdf-viewer-box {
-      width: 100%;
-      min-height: 360px;
-      border-radius: 14px;
-      border: 1.5px dashed var(--border-color);
-      background: rgba(9, 6, 14, 0.55);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 24px;
-      overflow: hidden;
-    }
-
-    .pdf-viewer-box iframe {
-      width: 100%;
-      height: 460px;
-      border: none;
-      border-radius: 10px;
-    }
-
-    /* Dark Purple Aesthetic Moodboard */
-    .moodboard-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    @media (min-width: 640px) {
-      .moodboard-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    .mood-tile {
-      position: relative;
-      height: 155px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid var(--border-color);
-    }
-
-    .mood-tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.82) contrast(1.08);
-      transition: transform 0.35s ease;
-    }
-
-    .mood-tile:hover img {
-      transform: scale(1.06);
-    }
-
-    .mood-caption {
-      position: absolute;
-      inset: auto 0 0 0;
-      padding: 8px 10px;
-      background: linear-gradient(transparent, rgba(9, 6, 14, 0.92));
-      color: #f3e8ff;
-      font-size: 0.78rem;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-    }
-
-    /* Guestbook Wall */
-    .guestbook-form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-
-    .guest-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .input-field {
-      flex: 1;
-      min-width: 180px;
-      background: var(--card-elevated);
-      border: 1px solid var(--border-color);
-      color: var(--text-color);
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-family: inherit;
-      font-size: 0.88rem;
-    }
-
-    .input-field:focus {
-      outline: none;
-      border-color: var(--primary-color);
-    }
-
-    .notes-list {
-      display: grid;
-      gap: 10px;
-      text-align: left;
-    }
-
-    .note-item {
-      background: var(--card-elevated);
-      border-left: 3px solid var(--primary-color);
-      padding: 11px 14px;
-      border-radius: 10px;
-      font-size: 0.88rem;
-    }
-
-    .note-author {
-      font-weight: 700;
-      color: var(--primary-color);
-      font-size: 0.82rem;
-      margin-bottom: 2px;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      font-size: 0.88rem;
-      color: var(--subtext-color);
-      margin-top: 24px;
-      padding: 0 16px;
-    }
-
-    .quote-footer {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      color: var(--primary-color);
-      margin-bottom: 6px;
-    }
-
-    /* Modal for GitHub Setup Guide */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(5, 3, 10, 0.82);
-      backdrop-filter: blur(6px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      z-index: 200;
-    }
-
-    .modal-box {
-      background: var(--card-bg);
-      border: 1px solid var(--primary-color);
-      border-radius: 18px;
-      max-width: 500px;
-      width: 100%;
-      padding: 22px;
-      text-align: left;
-      box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
-    }
-
-    .modal-box h3 {
-      font-family: 'Cinzel', serif;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-
-    .modal-box ol {
-      padding-left: 20px;
-      font-size: 0.88rem;
-      color: var(--text-color);
-      display: grid;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .editable-highlight {
-      outline: 1.5px dashed var(--primary-color);
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-  </style>
 </head>
 <body>
 
-  <!-- Top Sticky Bar -->
-  <nav class="top-bar">
-    <div class="brand-tag">✦ Ma. Helena Edelvice O. Gonzales• HUMSS XII</div>
-    <div class="top-controls">
-      <button class="mini-pill" id="edit-toggle" onclick="toggleEditMode()">✎ Customize Text</button>
-      <button class="mini-pill" onclick="toggleModal(true)">⚙ GitHub PDF Guide</button>
+    <div class="marquee-bar">
+        <div class="marquee-content">
+            ✦ WELCOME TO THE ARCHIVE ✦ VISUAL DIRECTOR &amp; MIXED MEDIA ARTIST ✦ AVAILABLE FOR CREATIVE DIRECTION ✦ EST. 2026 ✦ WELCOME TO THE ARCHIVE ✦ VISUAL DIRECTOR &amp; MIXED MEDIA ARTIST ✦ AVAILABLE FOR CREATIVE DIRECTION ✦ EST. 2026 ✦
+        </div>
     </div>
-  </nav>
 
-  <div class="container">
-    <!-- Header -->
     <header>
-      <div class="badge-strand">SHS Grade 12 Student|HUMSS</div>
-      <h1 class="editable">Welcome to My Peraonal Portfolio!</h1>
-      <p class="subtitle editable">Visual Artist • Campus Journalist • Creative Writer • Stage Host • A Srudent • Oldest Sibling • and Daughter</p>
+        <div class="logo">C.GAN // 99</div>
+        <nav>
+            <a href="#works">Works</a>
+            <a href="#archive">Archive</a>
+            <a href="#shop">Drops</a>
+            <a href="#contact">Contact</a>
+        </nav>
     </header>
 
-    <!-- Main Hero Card (Preserving Original Content & Buttons) -->
-    <section class="card hero-card">
-      <div class="profile-wrapper">
-        <img
-          id="hero-profile-img"
-          src="IMG_20261112_001728.jpg"
-          onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'"
-          alt="Helena Profile Picture"
-          class="profile-img"
-        />
-        <span class="status-chip">HUMSS '26</span>
-      </div>
+    <section class="hero">
+        <div class="status-pill">● ONLINE // OPEN FOR COMMISSIONS</div>
+        <h1>DARK <span>Romance</span><br>&amp; DIGITAL ART</h1>
+        <p>Multidisciplinary visual artist blending gothic minimalism, cyber-grunge aesthetics, and bespoke fashion.</p>
 
-      <div style="margin-bottom: 12px;">
-        <button class="mini-pill" onclick="triggerPhotoUpload('hero')">📷 Change Profile Pic</button>
-      </div>
-
-      <h2 class="section-title editable">Greetings Lovelies! ✨</h2>
-      <p class="bio-text editable">
-        Hello! I am <strong>Maria Helena Edelvice O. Gonzales</strong>, a Grade 12 SHS student here at <strong>Datamex College of Saint Adeline•Parañaque</strong>.
-      </p>
-      <p class="bio-text editable">
-        A former Special Program of the Arts (SPA) Visual Arts major, campus journalist, and creative writer turning thoughts, canvases, and stage moments into stories.
-      </p>
-
-      <!-- Dark Academia Ambient Audio Player -->
-      <div class="vibe-player">
-        <div class="vibe-info">
-          <span class="vibe-title">
-            <span class="equalizer" id="eq-bars"><span></span><span></span><span></span><span></span></span>
-            Velvet Midnight Synth
-          </span>
-          <span class="vibe-sub">Ambient dark-purple reading vibe</span>
+        <!-- Interactive Mini Audio Widget -->
+        <div class="cyber-player">
+            <button class="play-btn" id="playToggle" onclick="togglePlay()">▶</button>
+            <div class="track-info">
+                <span class="track-title" id="trackStatus">SYSTEM_STANDBY.MP3</span>
+                <span class="track-artist">STUDIO MIX // 128 BPM</span>
+            </div>
         </div>
-        <button class="mini-pill" id="audio-btn" onclick="toggleAmbientAudio()">▶ Play Vibe</button>
-      </div>
+    </section>
 
-      <!-- Original Interactive Buttons -->
-      <div class="button-group">
-        <button class="btn" onclick="showMessage('contact')">💌 Get in Touch!</button>
-        <button class="btn btn-outline" onclick="showMessage('Talents')">⚡ View My Skills</button>
-        <button class="btn btn-outline" onclick="cycleTheme()">🎨 Switch Color Theme</button>
-      </div>
+    <div class="section-header" id="works">
+        <h2>Selected Works</h2>
+        <span style="font-size: 0.75rem; color: var(--accent-crimson);">[001 — 003]</span>
+    </div>
 
-      <!-- Original Color Dot Selectors -->
-      <div class="theme-selector">
-        <span class="theme-label">Theme:</span>
-        <div class="theme-dot dot-purple" title="Alt Dark Purple Theme" onclick="setTheme('purple')"></div>
-        <div class="theme-dot dot-dark" title="Midnight Blu
+    <section class="gallery-grid">
+        <div class="gallery-card">
+            <span class="card-tag">01 // CANVAS</span>
+            <div class="card-image" style="background: linear-gradient(135deg, #2b0912, #0d0d12);"></div>
+            <div class="card-info">
+                <h3>Blood &amp; Chrome</h3>
+                <p>Oil &amp; metallic leaf on raw linen (2026)</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <span class="card-tag">02 // COUTURE</span>
+            <div class="card-image" style="background: linear-gradient(135deg, #1f1f29, #3b1c26);"></div>
+            <div class="card-info">
+                <h3>Nocturne Corsetry</h3>
+                <p>Upcycled leather &amp; hardware textile piece</p>
+            </div>
+        </div>
+
+        <div class="gallery-card">
+            <span class="card-tag">03 // CAMPAIGN</span>
+            <div class="card-image" style="background: linear-gradient(135deg, #121217, #4a0e1c);"></div>
+            <div class="card-info">
+                <h3>Velvet Static</h3>
+                <p>3D visual direction &amp; editorial set design</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 C.GAN ARCHIVES // ALL RIGHTS RESERVED // DESIGNED IN THE VOID</p>
+    </footer>
+
+    <script>
+        let isPlaying = false;
+        function togglePlay() {
+            const btn = document.getElementById('playToggle');
+            const status = document.getElementById('trackStatus');
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                btn.textContent = '❚❚';
+                status.textContent = 'NOW_PLAYING: MIDNIGHT_SYNTH.MP3';
+                status.style.color = '#ff1e42';
+            } else {
+                btn.textContent = '▶';
+                status.textContent = 'SYSTEM_PAUSED.MP3';
+                status.style.color = '#ffffff';
+            }
+        }
+    </script>
+
+</body>
+</html>
