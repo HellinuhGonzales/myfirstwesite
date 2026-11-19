@@ -1,419 +1,1121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIGITAL ARCHIVE // 001</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-void: #070709;
-            --bg-card: #111116;
-            --text-silver: #e4e4ec;
-            --text-muted: #7a7a8c;
-            --accent-crimson: #ff1e42;
-            --accent-chrome: linear-gradient(135deg, #ffffff 0%, #8a8a9e 50%, #ffffff 100%);
-            --border-glaze: rgba(255, 255, 255, 0.14);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f1ff">
+  <meta name="description" content="Helena's Little Archive — a personal portfolio, creative journal, and collection of literary works.">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <title>Helena's Little Archive</title>
 
-        body {
-            background-color: var(--bg-void);
-            color: var(--text-silver);
-            font-family: 'Space Mono', monospace;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(255, 30, 66, 0.15), transparent 50%),
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 100% 100%, 40px 40px, 40px 40px;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
-        /* Subtle CRT / Film Grain Overlay */
-        body::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.12),
-                rgba(0, 0, 0, 0.12) 1px,
-                transparent 1px,
-                transparent 2px
-            );
-            pointer-events: none;
-            z-index: 999;
-        }
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
 
-        /* Top Scrolling Y2K Ticker */
-        .marquee-bar {
-            background: var(--accent-crimson);
-            color: #000;
-            font-weight: 700;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            padding: 6px 0;
-            text-transform: uppercase;
-            white-space: nowrap;
-            overflow: hidden;
-            border-bottom: 1px solid #fff;
-        }
+    :root {
+      --bg: #f6f1ff;
+      --paper: rgba(255,255,255,.82);
+      --solid: #fffaff;
+      --ink: #302641;
+      --muted: #81758f;
+      --accent: #9270c7;
+      --accent2: #c1a9ec;
+      --line: rgba(113,82,155,.17);
+      --nav: rgba(250,246,255,.9);
+      --chip: #eee5fb;
+      --shadow: 0 18px 55px rgba(78,49,115,.11);
+    }
 
-        .marquee-content {
-            display: inline-block;
-            animation: scrollText 18s linear infinite;
-        }
+    [data-theme="midnight"] {
+      --bg: #171323;
+      --paper: rgba(38,29,54,.9);
+      --solid: #261d36;
+      --ink: #f6efff;
+      --muted: #b7a9c9;
+      --accent: #c1a0f1;
+      --accent2: #8e70bd;
+      --line: rgba(221,198,255,.16);
+      --nav: rgba(29,22,42,.92);
+      --chip: #382b4d;
+      --shadow: 0 18px 55px rgba(0,0,0,.25);
+    }
 
-        @keyframes scrollText {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-        }
+    [data-theme="rose"] {
+      --bg: #fff1f6;
+      --paper: rgba(255,255,255,.85);
+      --solid: #fffafd;
+      --ink: #45283a;
+      --muted: #987889;
+      --accent: #b879a1;
+      --accent2: #e1b4ce;
+      --line: rgba(165,95,135,.17);
+      --nav: rgba(255,247,251,.9);
+      --chip: #f8e3ee;
+      --shadow: 0 18px 55px rgba(126,67,100,.1);
+    }
 
-        /* Navigation */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 3rem;
-            border-bottom: 1px solid var(--border-glaze);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
 
-        .logo {
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 1.6rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            background: var(--accent-chrome);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
-        }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 5%, rgba(201,174,244,.25), transparent 28rem),
+        radial-gradient(circle at 95% 28%, rgba(238,194,220,.22), transparent 25rem),
+        var(--bg);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.65;
+      transition: background .3s, color .3s;
+    }
 
-        nav a {
-            margin-left: 2rem;
-            text-decoration: none;
-            color: var(--text-silver);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            position: relative;
-            transition: color 0.25s;
-        }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        nav a:hover {
-            color: var(--accent-crimson);
-        }
+    button {
+      font: inherit;
+    }
 
-        nav a::before {
-            content: "[";
-            opacity: 0;
-            margin-right: 4px;
-            color: var(--accent-crimson);
-            transition: opacity 0.2s;
-        }
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .85rem clamp(1rem,5vw,4rem);
+      background: var(--nav);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
 
-        nav a::after {
-            content: "]";
-            opacity: 0;
-            margin-left: 4px;
-            color: var(--accent-crimson);
-            transition: opacity 0.2s;
-        }
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      white-space: nowrap;
+    }
 
-        nav a:hover::before, nav a:hover::after {
-            opacity: 1;
-        }
+    .brand span {
+      color: var(--accent);
+    }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 7rem 2rem 5rem;
-            position: relative;
-        }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .25rem;
+    }
 
-        .status-pill {
-            display: inline-block;
-            border: 1px solid var(--accent-crimson);
-            color: var(--accent-crimson);
-            padding: 4px 14px;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            border-radius: 50px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 0 15px rgba(255, 30, 66, 0.3);
-        }
+    .nav-links a,
+    .theme-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: .48rem .7rem;
+      border-radius: 999px;
+      font-size: .83rem;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
 
-        .hero h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 8vw, 6.5rem);
-            font-weight: 800;
-            text-transform: uppercase;
-            line-height: 0.95;
-            letter-spacing: -2px;
-            margin-bottom: 1.5rem;
-            background: var(--accent-chrome);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+    .nav-links a:hover,
+    .nav-links a.active,
+    .theme-btn:hover {
+      background: var(--chip);
+      color: var(--ink);
+    }
 
-        .hero h1 span {
-            font-family: 'Cinzel Decorative', cursive;
-            font-weight: 700;
-            -webkit-text-fill-color: var(--accent-crimson);
-            text-shadow: 0 0 25px rgba(255, 30, 66, 0.6);
-        }
+    .theme-btn {
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
 
-        .hero p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            max-width: 540px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.6;
-        }
+    .wrap {
+      width: min(1080px, calc(100% - 2rem));
+      margin: auto;
+    }
 
-        /* Interactive Mini Audio Player Widget */
-        .cyber-player {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(20, 20, 26, 0.85);
-            border: 1px solid var(--border-glaze);
-            padding: 10px 20px;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        }
+    .hero {
+      min-height: 82vh;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 3rem;
+      align-items: center;
+      padding: 5rem 0 4rem;
+    }
 
-        .play-btn {
-            background: var(--accent-crimson);
-            color: #fff;
-            border: none;
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            font-family: 'Space Mono', monospace;
-            font-weight: bold;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+    .eyebrow {
+      color: var(--accent);
+      font-size: .76rem;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
 
-        .play-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 15px var(--accent-crimson);
-        }
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      line-height: 1.15;
+    }
 
-        .track-info {
-            text-align: left;
-            font-size: 0.75rem;
-        }
+    h1 {
+      font-size: clamp(3rem,7vw,5.7rem);
+      margin: .8rem 0 1rem;
+      letter-spacing: -.04em;
+    }
 
-        .track-title {
-            color: #fff;
-            font-weight: 700;
-            display: block;
-        }
+    h1 em {
+      color: var(--accent);
+      font-weight: 500;
+    }
 
-        .track-artist {
-            color: var(--text-muted);
-        }
+    .hero-copy {
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
 
-        /* Gallery Grid */
-        .section-header {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 3rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            border-bottom: 1px solid var(--border-glaze);
-            padding-bottom: 1rem;
-        }
+    .hero-actions {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      margin-top: 1.7rem;
+    }
 
-        .section-header h2 {
-            font-family: 'Syne', sans-serif;
-            text-transform: uppercase;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-        }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: .8rem 1.15rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: .9rem;
+      transition: transform .2s, box-shadow .2s;
+    }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-            padding: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+    }
 
-        .gallery-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-glaze);
-            position: relative;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow: hidden;
-        }
+    .btn.primary {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
 
-        .gallery-card:hover {
-            border-color: var(--accent-crimson);
-            transform: translateY(-6px);
-            box-shadow: 0 12px 35px rgba(255, 30, 66, 0.18);
-        }
+    .btn.soft {
+      background: var(--paper);
+      color: var(--ink);
+    }
 
-        .card-tag {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(7, 7, 9, 0.85);
-            border: 1px solid var(--border-glaze);
-            color: var(--text-silver);
-            font-size: 0.7rem;
-            padding: 3px 8px;
-            z-index: 2;
-        }
+    .portrait-card {
+      position: relative;
+      width: min(100%,360px);
+      justify-self: center;
+      padding: 1rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 48% 48% 24px 24px;
+      box-shadow: var(--shadow);
+      transform: rotate(2deg);
+    }
 
-        .card-image {
-            height: 280px;
-            background-size: cover;
-            background-position: center;
-            filter: contrast(1.15) saturate(0.85);
-            transition: filter 0.3s, transform 0.5s;
-        }
+    .portrait {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      border-radius: 48% 48% 18px 18px;
+      background: var(--chip);
+    }
 
-        .gallery-card:hover .card-image {
-            filter: contrast(1.2) saturate(1.1);
-            transform: scale(1.03);
-        }
+    .portrait-note {
+      text-align: center;
+      color: var(--muted);
+      font-family: "Playfair Display",serif;
+      font-style: italic;
+      padding: .8rem .2rem .2rem;
+    }
 
-        .card-info {
-            padding: 1.5rem;
-            border-top: 1px solid var(--border-glaze);
-        }
+    .sticker {
+      position: absolute;
+      right: -1.2rem;
+      top: 12%;
+      background: var(--solid);
+      color: var(--accent);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      width: 82px;
+      height: 82px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: .7rem;
+      line-height: 1.2;
+      transform: rotate(12deg);
+      box-shadow: var(--shadow);
+    }
 
-        .card-info h3 {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.25rem;
-            text-transform: uppercase;
-            margin-bottom: 0.4rem;
-            color: #fff;
-        }
+    section {
+      padding: 4.5rem 0;
+    }
 
-        .card-info p {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
 
-        footer {
-            text-align: center;
-            padding: 3rem;
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-glaze);
-            margin-top: 4rem;
-            letter-spacing: 1px;
-        }
+    .section-head h2 {
+      font-size: clamp(2.1rem,4vw,3.2rem);
+      margin: .4rem 0 0;
+    }
 
-        @media (max-width: 768px) {
-            header { padding: 1.2rem 1.5rem; flex-direction: column; gap: 1rem; }
-            nav a { margin: 0 0.75rem; font-size: 0.75rem; }
-            .gallery-grid { padding: 2rem 1.5rem; }
-        }
-    </style>
+    .section-head p {
+      color: var(--muted);
+      max-width: 420px;
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.35rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 1.35rem;
+      margin: .5rem 0;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: .4rem 0 0;
+      font-size: .93rem;
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--chip);
+      color: var(--accent);
+      font-size: 1.25rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .quote {
+      font-family: "Playfair Display",serif;
+      font-size: 1.55rem;
+      line-height: 1.4;
+      color: var(--accent);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      background: var(--chip);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: .42rem .75rem;
+      font-size: .8rem;
+    }
+
+    .timeline {
+      border-left: 1px solid var(--line);
+      margin-left: .5rem;
+      padding-left: 1.3rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 1.35rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.67rem;
+      top: .4rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px var(--chip);
+    }
+
+    .timeline-item strong {
+      display: block;
+    }
+
+    .timeline-item small {
+      color: var(--muted);
+    }
+
+    .work-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .work-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: var(--chip);
+      cursor: zoom-in;
+    }
+
+    .work-info {
+      padding: 1.1rem 1.2rem 1.3rem;
+    }
+
+    .work-info h3 {
+      margin: 0;
+    }
+
+    /* LITERARY WORKS */
+    .literary-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 1rem;
+    }
+
+    .literary-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 245px;
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .literary-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 55px rgba(78,49,115,.16);
+    }
+
+    .literary-card::after {
+      content: "✧";
+      position: absolute;
+      right: 1.2rem;
+      top: .6rem;
+      font-size: 3.5rem;
+      color: var(--accent2);
+      opacity: .45;
+      pointer-events: none;
+    }
+
+    .literary-type {
+      display: inline-block;
+      width: fit-content;
+      padding: .35rem .75rem;
+      border-radius: 999px;
+      background: var(--chip);
+      color: var(--accent);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .literary-card h3 {
+      font-size: 1.65rem;
+      margin: 1rem 0 .55rem;
+    }
+
+    .literary-card p {
+      color: var(--muted);
+      font-size: .9rem;
+      margin: 0 0 1.2rem;
+    }
+
+    .read-pdf {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      gap: .5rem;
+      padding: .7rem 1rem;
+      background: var(--accent);
+      color: white;
+      border-radius: 999px;
+      font-size: .84rem;
+      font-weight: 700;
+      transition: .2s;
+    }
+
+    .read-pdf:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .literary-note {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .journal-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1rem;
+    }
+
+    .journal-card {
+      cursor: pointer;
+      text-align: left;
+      color: var(--ink);
+      width: 100%;
+      border: 1px solid var(--line);
+      transition: transform .2s;
+    }
+
+    .journal-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .journal-card .date {
+      color: var(--accent);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .contact-panel {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-panel h2 {
+      font-size: clamp(2rem,4vw,3.2rem);
+      margin: .5rem 0;
+    }
+
+    .contact-panel p {
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 1.4rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem 3rem;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    dialog {
+      width: min(560px, calc(100% - 2rem));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 0;
+      background: var(--solid);
+      color: var(--ink);
+      box-shadow: 0 25px 90px rgba(20,10,40,.35);
+    }
+
+    dialog::backdrop {
+      background: rgba(23,15,35,.55);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-inner {
+      padding: 1.6rem;
+    }
+
+    .modal-inner h2 {
+      font-size: 2rem;
+      margin: .3rem 0 1rem;
+    }
+
+    .modal-inner p {
+      color: var(--muted);
+      white-space: pre-line;
+    }
+
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .close {
+      border: 1px solid var(--line);
+      background: var(--chip);
+      color: var(--ink);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .lightbox img {
+      width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      display: block;
+      background: #160f20;
+    }
+
+    .lightbox .modal-inner {
+      padding: .7rem;
+    }
+
+    .lightbox .modal-top {
+      padding: .3rem .3rem .7rem;
+    }
+
+    .note {
+      font-size: .82rem;
+      color: var(--muted);
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 760px) {
+      .site-nav {
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+
+      .nav-links a {
+        white-space: nowrap;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 3.5rem;
+        gap: 2.5rem;
+      }
+
+      .hero-copy {
+        margin: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .portrait-card {
+        width: min(75%,310px);
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: .7rem;
+      }
+
+      .grid,
+      .journal-grid,
+      .literary-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 3.5rem 0;
+      }
+    }
+
+    @media (min-width: 761px) and (max-width: 980px) {
+      .grid,
+      .journal-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {scroll-behavior: auto;}
+
+      ::before,
+      ::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <div class="marquee-bar">
-        <div class="marquee-content">
-            ✦ WELCOME TO THE ARCHIVE ✦ VISUAL DIRECTOR &amp; MIXED MEDIA ARTIST ✦ AVAILABLE FOR CREATIVE DIRECTION ✦ EST. 2026 ✦ WELCOME TO THE ARCHIVE ✦ VISUAL DIRECTOR &amp; MIXED MEDIA ARTIST ✦ AVAILABLE FOR CREATIVE DIRECTION ✦ EST. 2026 ✦
-        </div>
+  <!-- NAVIGATION -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="brand" href="#home">Helena Gonzales's<span>.</span>Archive</a>
+
+    <div class="nav-links">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#works">Works</a>
+      <a href="#literary-works">Literary Works</a>
+      <a href="#journal">Journal</a>
+      <a href="#contact">Contact</a>
     </div>
 
-    <header>
-        <div class="logo">C.GAN // 99</div>
-        <nav>
-            <a href="#works">Works</a>
-            <a href="#archive">Archive</a>
-            <a href="#shop">Drops</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
+    <button class="theme-btn" id="themeToggle" type="button">☾ Theme</button>
+  </nav>
 
-    <section class="hero">
-        <div class="status-pill">● ONLINE // OPEN FOR COMMISSIONS</div>
-        <h1>DARK <span>Romance</span><br>&amp; DIGITAL ART</h1>
-        <p>Multidisciplinary visual artist blending gothic minimalism, cyber-grunge aesthetics, and bespoke fashion.</p>
+  <main>
+    <div class="wrap">
 
-        <!-- Interactive Mini Audio Widget -->
-        <div class="cyber-player">
-            <button class="play-btn" id="playToggle" onclick="togglePlay()">▶</button>
-            <div class="track-info">
-                <span class="track-title" id="trackStatus">SYSTEM_STANDBY.MP3</span>
-                <span class="track-artist">STUDIO MIX // 128 BPM</span>
-            </div>
+      <!-- HOME -->
+      <section class="hero" id="home">
+        <div>
+          <div class="eyebrow">My little corner of the internet · 2026</div>
+
+          <h1>Hi, I'm<br><em>Maria Helena Edelvice O. Gonzales!</em></h1>
+
+          <p class="hero-copy">
+            A Grade 12 HUMSS student, visual arts enthusiast,
+            storyteller, and curious creative. Welcome to my
+            little archive — a collection of the things I make,
+            the stories I tell, and the moments that shape me.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#works">Explore my works ↗</a>
+            <a class="btn soft" href="#about">Get to know me</a>
+          </div>
         </div>
-    </section>
 
-    <div class="section-header" id="works">
-        <h2>Selected Works</h2>
-        <span style="font-size: 0.75rem; color: var(--accent-crimson);">[001 — 003]</span>
+        <div class="portrait-card">
+          <img class="portrait" 
+               src="IMG_20261112_001728.jpg" 
+               alt="Portrait of Helena" 
+               onerror="this.style.display='none'; this.parentElement.style.minHeight='320px'; this.parentElement.style.background='linear-gradient(145deg,var(--chip),var(--solid))';">
+
+          <div class="portrait-note">“still becoming, always creating.”</div>
+          <div class="sticker">made with <br>curiosity<br>✦</div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">01 / the person behind the pages</div>
+            <h2>A little about me</h2>
+          </div>
+          <p>Somewhere between art, words, leadership, and daydreams — that's where you'll find me.</p>
+        </div>
+
+        <div class="about-grid">
+          <article class="card">
+            <div class="quote">“Creativity is how I make sense of the world.”</div>
+
+            <p>I'm a HUMSS student with a background in the
+              Special Program in the Arts (Visual Arts).
+              I enjoy expressing ideas through different forms —
+              from illustrations and photographs to writing,
+              performance, and handmade creations.</p>
+
+            <p>My experiences as a student journalist, class leader,
+              event host, and performer have taught me to be brave
+              with my ideas and thoughtful with my voice.</p>
+          </article>
+
+          <article class="card">
+            <h3>My little timeline</h3>
+
+            <div class="timeline">
+              <div class="timeline-item">
+                <strong>Visual Arts learner</strong>
+                <small>Former SPA Visual Arts student at Negros Oriental High School</small>
+              </div>
+
+              <div class="timeline-item">
+                <strong>Campus journalism</strong>
+                <small>Editorial cartooning, photojournalism, and sports writing</small>
+              </div>
+
+              <div class="timeline-item">
+                <strong>Leadership & stage</strong>
+                <small>Class president, event host, organizer, and performer</small>
+              </div>
+
+              <div class="timeline-item">
+                <strong>Still creating</strong>
+                <small>Writing stories, making art, learning, and collecting new experiences</small>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">02 / things I enjoy doing</div>
+            <h2>My creative toolbox</h2>
+          </div>
+
+          <p>A mix of skills I'm developing, interests I'm exploring,
+            and things that make me feel most like myself.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <div class="icon">✎</div>
+            <h3>Writing & storytelling</h3>
+            <p>Poems, songs, essays, creative ideas, and stories that begin with a single thought.</p>
+            <div class="tags">
+              <span class="tag">Creative writing</span>
+              <span class="tag">Songwriting</span>
+              <span class="tag">Poetry</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon">✿</div>
+            <h3>Visual arts & crafts</h3>
+            <p>Exploring visual expression through art, clay sculpting, props making, and creative projects.</p>
+            <div class="tags">
+              <span class="tag">Visual arts</span>
+              <span class="tag">Clay</span>
+              <span class="tag">Props</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="icon">♫</div>
+            <h3>Performance & events</h3>
+            <p>Sharing stories and energy through hosting, organizing, singing, and stage performances.</p>
+            <div class="tags">
+              <span class="tag">Hosting</span>
+              <span class="tag">Singing</span>
+              <span class="tag">Leadership</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- WORKS AND MEMORIES -->
+      <section id="works">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">03 / snapshots of my world</div>
+            <h2>Works & memories</h2>
+          </div>
+          <p>A growing gallery of school experiences, creative projects, and moments worth keeping. Tap a photo to view it larger.</p>
+        </div>
+        <div class="grid">
+          <article class="card work-card">
+            <img class="work-image" src="SpecialProgramofTheArts.jpg" alt="Visual arts and SPA memories" data-lightbox>
+            <div class="work-info">
+              <h3>Visual arts journey</h3>
+              <p>Memories from my time as a Visual Arts student.</p>
+            </div>
+          </article>
+
+          <article class="card work-card">
+            <img class="work-image" src="Journalism Family.jpg" alt="Campus journalism memory" data-lightbox>
+            <div class="work-info">
+              <h3>Campus journalism</h3>
+              <p>Learning to observe, document, and tell stories.</p>
+            </div>
+          </article>
+
+          <article class="card work-card">
+            <img class="work-image" src="HostingwithMyBoo.jpg" alt="Event hosting memory" data-lightbox>
+            <div class="work-info">
+              <h3>On the microphone</h3>
+              <p>Hosting, organizing, and helping bring events to life.</p>
+            </div>
+          </article>
+
+          <article class="card work-card">
+            <img class="work-image" src="SpecialProgramofTheArts.jpg" alt="Painting artwork" data-lightbox>
+            <div class="work-info">
+              <h3>Art & experiments</h3>
+              <p>Color, ideas, and the joy of making something.</p>
+            </div>
+          </article>
+
+          <article class="card work-card">
+            <img class="work-image" src="SingingDuo.jpg.jpg" alt="Singing performance" data-lightbox>
+            <div class="work-info">
+              <h3>Music & expression</h3>
+              <p>Finding another way to communicate through music.</p>
+            </div>
+          </article>
+
+          <article class="card work-card">
+            <img class="work-image" src="TopOneinResearchDefense.jpg" alt="Writing and journal pages" data-lightbox>
+            <div class="work-info">
+              <h3>Words on paper</h3>
+              <p>Little drafts, poems, songs, and ideas in progress.</p>
+            </div>
+          </article>
+        </div>
+        <p class="note">Add your photos to the images folder using the filenames above. You can also change the image paths in this HTML file.</p>
+      </section>
+
+      <!-- LITERARY WORKS -->
+      <section id="literary-works">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">04 / words from my little archive</div>
+            <h2>My literary collection</h2>
+          </div>
+          <p>A collection of my poems, stories, personal reflections, and literary analysis. Every piece holds a little part of my thoughts and creativity.</p>
+        </div>
+        <div class="literary-grid">
+          <article class="literary-card">
+            <div>
+              <span class="literary-type">Poetry</span>
+              <h3>The Filipino Pride</h3>
+              <p>A poem celebrating Filipino identity, culture, traditions, values, and the beauty of being Filipino.</p>
+            </div>
+            <a class="read-pdf" href="The Filipino Pride-POEM_20261112_143835_0000.pdf" target="_blank" rel="noopener">Read poem ↗</a>
+          </article>
+
+          <article class="literary-card">
+            <div>
+              <span class="literary-type">Short Story</span>
+              <h3>Double Meanings</h3>
+              <p>A personal story about friendship, honesty, unexpected feelings, and the complicated meanings behind certain moments.</p>
+            </div>
+            <a class="read-pdf" href="Double Meanings-SHORT STORY _20261112_152600_0000.pdf" target="_blank" rel="noopener">Read story ↗</a>
+          </article>
+
+          <article class="literary-card">
+            <div>
+              <span class="literary-type">Personal Letter</span>
+              <h3>Dear Future Self</h3>
+              <p>A letter to my future self about growing, finding my own path, staying kind, and embracing every season of life.</p>
+            </div>
+            <a class="read-pdf" href="Dear Diary_20261118_163625_0000.pdf" target="_blank" rel="noopener">Read letter ↗</a>
+          </article>
+
+          <article class="literary-card">
+            <div>
+              <span class="literary-type">Literary Analysis</span>
+              <h3>Light Against the Darkness</h3>
+              <p>An analysis of hope and perseverance in "The Small Lamp," exploring hardship, symbolism, education, and determination.</p>
+            </div>
+            <a class="read-pdf" href="LITERARY ANALYSIS _20261118_162154_0000.pdf" target="_blank" rel="noopener">Read analysis ↗</a>
+          </article>
+        </div>
+        <p class="literary-note">✦ Select "Read" to open each original PDF in a new browser tab.</p>
+      </section>
+
+      <!-- JOURNAL -->
+      <section id="journal">
+        <div class="section-head">
+          <div>
+            <div class="eyebrow">05 / notes from the margins</div>
+            <h2>The journal nook</h2>
+          </div>
+          <p>Small reminders, reflections, and thoughts from a person who's still figuring things out — and enjoying the process.</p>
+        </div>
+        <div class="journal-grid">
+          <button class="card journal-card" type="button"
+            data-title="On becoming"
+            data-date="A note to myself"
+            data-entry="I don't have to have everything figured out right now. I can learn as I go, change my mind, and become someone new with every season. Progress can be quiet, too.">
+            <span class="date">01 · a reminder</span>
+            <h3>On becoming</h3>
+            <p>A reminder that growth doesn't need to be rushed.</p>
+            <span class="tag">Read entry ↗</span>
+          </button>
+          <button class="card journal-card" type="button"
+            data-title="The art of noticing"
+            data-date="A creative thought"
+            data-entry="Sometimes inspiration is hiding in ordinary things: the colors of the afternoon, a conversation, a song, or a sentence I almost forgot to write down. I want to keep noticing.">
+            <span class="date">02 · creativity</span>
+            <h3>The art of noticing</h3>
+            <p>Finding little sparks of inspiration in everyday life.</p>
+            <span class="tag">Read entry ↗</span>
+          </button>
+          <button class="card journal-card" type="button"
+            data-title="Keep making things"
+            data-date="A creative promise"
+            data-entry="Not everything I create has to be perfect or impressive. Some things can simply exist because I wanted to make them. I hope I never lose that kind of curiosity.">
+            <span class="date">03 · a promise</span>
+            <h3>Keep making things</h3>
+            <p>Creating for the joy of creating.</p>
+            <span class="tag">Read entry ↗</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="contact-panel">
+          <div class="eyebrow">06 / let's connect</div>
+          <h2>Thanks for stopping by.</h2>
+          <p>This little archive is always a work in progress, just like me. If you'd like to connect, collaborate, or simply say hello, feel free to drop me a message.</p>
+          <a class="btn primary" href="mailto:hellinuhgonzales@gmail.com">Say hello ✉</a>
+        </div>
+      </section>
     </div>
+  </main>
 
-    <section class="gallery-grid">
-        <div class="gallery-card">
-            <span class="card-tag">01 // CANVAS</span>
-            <div class="card-image" style="background: linear-gradient(135deg, #2b0912, #0d0d12);"></div>
-            <div class="card-info">
-                <h3>Blood &amp; Chrome</h3>
-                <p>Oil &amp; metallic leaf on raw linen (2026)</p>
-            </div>
-        </div>
+  <!-- FOOTER -->
+  <footer>Made with care, curiosity, and a little bit of lavender. · © <span id="year"></span> Helena's Little Archive</footer>
 
-        <div class="gallery-card">
-            <span class="card-tag">02 // COUTURE</span>
-            <div class="card-image" style="background: linear-gradient(135deg, #1f1f29, #3b1c26);"></div>
-            <div class="card-info">
-                <h3>Nocturne Corsetry</h3>
-                <p>Upcycled leather &amp; hardware textile piece</p>
-            </div>
-        </div>
+  <!-- JOURNAL POPUP -->
+  <dialog id="journalModal">
+    <div class="modal-inner">
+      <div class="modal-top">
+        <span class="eyebrow" id="journalDate">journal entry</span>
+        <button class="close" type="button" data-close aria-label="Close dialog">×</button>
+      </div>
+      <h2 id="journalTitle"></h2>
+      <p id="journalText"></p>
+    </div>
+  </dialog>
 
-        <div class="gallery-card">
-            <span class="card-tag">03 // CAMPAIGN</span>
-            <div class="card-image" style="background: linear-gradient(135deg, #121217, #4a0e1c);"></div>
-            <div class="card-info">
-                <h3>Velvet Static</h3>
-                <p>3D visual direction &amp; editorial set design</p>
-            </div>
-        </div>
-    </section>
+  <!-- IMAGE LIGHTBOX -->
+  <dialog id="imageModal" class="lightbox">
+    <div class="modal-inner">
+      <div class="modal-top">
+        <span class="eyebrow">a closer look</span>
+        <button class="close" type="button" data-close aria-label="Close image">×</button>
+      </div>
+      <img id="lightboxImage" src="" alt="Expanded gallery image">
+    </div>
+  </dialog>
 
-    <footer>
-        <p>© 2026 C.GAN ARCHIVES // ALL RIGHTS RESERVED // DESIGNED IN THE VOID</p>
-    </footer>
+  <!-- JAVASCRIPT -->
+  <script>
+    // COLOR THEMES
+    const root = document.documentElement;
+    const themes = ["", "midnight", "rose"];
+    let themeIndex = 0;
+    const themeButton = document.getElementById("themeToggle");
+    themeButton.addEventListener("click", () => {
+      themeIndex = (themeIndex + 1) % themes.length;
+      if (themes[themeIndex]) {
+        root.setAttribute("data-theme", themes[themeIndex]);
+      } else {
+        root.removeAttribute("data-theme");
+      }
+      themeButton.textContent =
+        themes[themeIndex] === "midnight" ? "☀ Theme" :
+        themes[themeIndex] === "rose" ? "✿ Theme" :
+        "☾ Theme";
+    });
 
-    <script>
-        let isPlaying = false;
-        function togglePlay() {
-            const btn = document.getElementById('playToggle');
-            const status = document.getElementById('trackStatus');
-            isPlaying = !isPlaying;
-            if (isPlaying) {
-                btn.textContent = '❚❚';
-                status.textContent = 'NOW_PLAYING: MIDNIGHT_SYNTH.MP3';
-                status.style.color = '#ff1e42';
-            } else {
-                btn.textContent = '▶';
-                status.textContent = 'SYSTEM_PAUSED.MP3';
-                status.style.color = '#ffffff';
-            }
+    // AUTOMATIC FOOTER YEAR
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // JOURNAL POPUPS
+    const journalModal = document.getElementById("journalModal");
+    document.querySelectorAll(".journal-card").forEach(card => {
+      card.addEventListener("click", () => {
+        document.getElementById("journalTitle").textContent = card.dataset.title;
+        document.getElementById("journalDate").textContent = card.dataset.date;
+        document.getElementById("journalText").textContent = card.dataset.entry;
+        journalModal.showModal();
+      });
+    });
+
+    // IMAGE GALLERY LIGHTBOX
+    const imageModal = document.getElementById("imageModal");
+    const lightboxImage = document.getElementById("lightboxImage");
+    document.querySelectorAll("[data-lightbox]").forEach(img => {
+      img.addEventListener("click", () => {
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        imageModal.showModal();
+      });
+    });
+
+    // CLOSE POPUPS
+    document.querySelectorAll("[data-close]").forEach(button => {
+      button.addEventListener("click", () => {
+        button.closest("dialog").close();
+      });
+    });
+    [journalModal, imageModal].forEach(dialog => {
+      dialog.addEventListener("click", event => {
+        if (event.target === dialog) {
+          dialog.close();
         }
-    </script>
+      });
+    });
 
+    // ACTIVE NAVIGATION LINK
+    const navLinks = document.querySelectorAll(".nav-links a");
+    const sections = document.querySelectorAll("main section[id]");
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+              link.classList.toggle(
+                "active",
+                link.getAttribute("href") === "#" + entry.target.id
+              );
+            });
+          }
+        });
+      }, {
+        rootMargin: "-35% 0px -55% 0px"
+      });
+      sections.forEach(section => observer.observe(section));
+    }
+  </script>
 </body>
 </html>
